@@ -1,17 +1,23 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ * MINIPROYECTO #2
+ *
+ * INTEGRANTES: 
+ * John Freddy Belalcázar
+ * Hernán David Cisneros
+ * Santiago González Gálvez
+ *
+ * Grupo 01 FPOE 
+ *
+ * PROFESOR: Luis Yohany Romo Portilla 
  */
 
 package com.mycompany.miniproyecto2;
 
-/**
- *
- * @author John
- */
+import Ventana.PlantillaGUI;
+
 public class Miniproyecto2 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        PlantillaGUI plantilla = new PlantillaGUI("Plantilla");
     }
 }
