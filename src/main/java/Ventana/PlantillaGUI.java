@@ -84,7 +84,11 @@ public class PlantillaGUI extends JFrame{
         
         public void mouseClicked(MouseEvent e){
             if (e.getSource() == btnVolver){
-                irInicioGUI();
+                if (e.getButton() == 1){
+                    irInicioGUI();
+                } else{
+                    e.consume();
+                }  
             }
         }
  
@@ -104,22 +108,30 @@ public class PlantillaGUI extends JFrame{
 
         public void mousePressed(MouseEvent e){
             if(e.getSource() == btnVolver){
-                btnVolver.setBackground(Color.WHITE);
-                btnVolver.setForeground(Color.BLACK);
+                if (e.getButton() == 1){
+                    btnVolver.setBackground(Color.WHITE);
+                    btnVolver.setForeground(Color.BLACK);
+                } else{
+                    e.consume();
+                } 
             }
         }
         
         public void mouseReleased(MouseEvent e){
             if(e.getSource() == btnVolver){
-                btnVolver.setBackground(Color.BLACK);
-                btnVolver.setForeground(Color.WHITE);    
-            }
-        }
+                if (e.getButton() == 1){
+                    btnVolver.setBackground(Color.BLACK);
+                    btnVolver.setForeground(Color.WHITE);
+                } else{
+                    e.consume();
+                }
+            }   
+        }   
     }
     public void irInicioGUI(){
-        /*InicioGUI ventanaInicio = new InicioGUI("Inicio");
+        InicioGUI ventanaInicio = new InicioGUI("Inicio");
         ventanaInicio.setVisible(true);
-        this.dispose();*/
+        this.dispose();
         
     }
 }
