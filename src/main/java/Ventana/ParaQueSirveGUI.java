@@ -13,6 +13,22 @@
 
 package Ventana;
 
-public class ParaQueSirveGUI {
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
+public class ParaQueSirveGUI extends PlantillaGUI{
+
+    public ParaQueSirveGUI(String titulo) {
+        super(titulo);
+    }
     
+    @Override
+    public void iniciarComponentes(){
+        super.iniciarComponentes();
+        
+        //CONFIGURACION SOBRE PLANTILLA
+        ImageIcon titulo = new ImageIcon("ParaQueSirve.png");
+        lblTitulo.setIcon(new ImageIcon(titulo.getImage().getScaledInstance(lblTitulo.getWidth(), lblTitulo.getHeight(), Image.SCALE_SMOOTH)));
+        txtAInfo.setBounds(150, 165, 550, 270);
+    }
 }

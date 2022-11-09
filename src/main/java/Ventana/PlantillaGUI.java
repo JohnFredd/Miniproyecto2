@@ -47,7 +47,7 @@ public class PlantillaGUI extends JFrame{
     
     public void iniciarComponentes(){
         //LABEL TITULO
-        ImageIcon titulo = new ImageIcon("titulo.png"); 
+        ImageIcon titulo = new ImageIcon("titulo.png");
         lblTitulo = new JLabel();
         lblTitulo.setBounds(205, 20, 435, 116);
         lblTitulo.setIcon(new ImageIcon(titulo.getImage().getScaledInstance(lblTitulo.getWidth(), lblTitulo.getHeight(), Image.SCALE_SMOOTH)));
@@ -117,9 +117,8 @@ public class PlantillaGUI extends JFrame{
         }
     }
     public void irInicioGUI(){
-        /*InicioGUI ventanaInicio = new InicioGUI("Inicio");
+        InicioGUI ventanaInicio = new InicioGUI("Inicio");
         ventanaInicio.setVisible(true);
-        this.dispose();*/
-        
+        this.dispose();
     }
 }

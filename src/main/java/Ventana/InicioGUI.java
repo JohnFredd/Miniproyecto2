@@ -218,9 +218,9 @@ public class InicioGUI extends PlantillaGUI{
         this.dispose();*/
     }
     public void irParaQueSirveGUI(){
-        /*ParaQueSirveGUI ventanaParaQueSirve = new ParaQueSirveGUI("Para qué sirve");
+        ParaQueSirveGUI ventanaParaQueSirve = new ParaQueSirveGUI("Para qué sirve");
         ventanaParaQueSirve.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }
     public void irNombreGUI(){
         /*NombreGUI ventanaNombre = new NombreGUI("Configuración");
