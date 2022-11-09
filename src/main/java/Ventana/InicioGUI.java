@@ -223,9 +223,9 @@ public class InicioGUI extends PlantillaGUI{
         this.dispose();
     }
     public void irNombreGUI(){
-        /*NombreGUI ventanaNombre = new NombreGUI("Configuración");
+        NombreGUI ventanaNombre = new NombreGUI("Configuración");
         ventanaNombre.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }
     public void paraQueSirveIluminado(){
         ImageIcon moneda2Iluminada = new ImageIcon("moneda2Retro.png");
