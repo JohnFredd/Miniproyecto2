@@ -13,6 +13,5 @@
 
 package Ventana;
 
-public class NombreGUI {
-    
+public class NombreGUI extends PlantillaGUI{       
 }

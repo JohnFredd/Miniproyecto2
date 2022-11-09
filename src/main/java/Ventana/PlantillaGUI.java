@@ -30,7 +30,7 @@ public class PlantillaGUI extends JFrame{
     protected JLabel lblTitulo;
     protected JLabel lblFondo;
     protected JTextArea txtAInfo;
-    protected JButton btnVolver;;
+    protected JButton btnVolver;
     
     public PlantillaGUI(String titulo){
         

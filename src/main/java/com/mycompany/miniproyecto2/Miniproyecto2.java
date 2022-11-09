@@ -13,11 +13,11 @@
 
 package com.mycompany.miniproyecto2;
 
-import Ventana.PlantillaGUI;
+import Ventana.InicioGUI;
 
 public class Miniproyecto2 {
 
     public static void main(String[] args) {
-        PlantillaGUI plantilla = new PlantillaGUI("Plantilla");
+        InicioGUI inicio = new InicioGUI("Inicio");
     }
 }
