@@ -23,7 +23,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 
 public class PlantillaGUI extends JFrame{
     
@@ -47,13 +46,11 @@ public class PlantillaGUI extends JFrame{
     public void iniciarComponentes(){
         
         //LABEL TITULO
-        lblTitulo = new JLabel("MEMORABBLE",SwingConstants.CENTER);
-        //lblTitulo.setOpaque(true);
-        //lblTitulo.setBackground(Color.BLACK);
-        lblTitulo.setBounds(205, 35, 435,85); //230, 25, 380,65 para tamaño 90
-        lblTitulo.setFont(new Font("Playbill",Font.BOLD,110));
-        lblTitulo.setForeground(Color.WHITE);
-        this.add(lblTitulo);
+        ImageIcon titulo = new ImageIcon("titulo.png"); 
+        lblTitulo = new JLabel();
+        lblTitulo.setBounds(205, 20, 435, 116);
+        lblTitulo.setIcon(new ImageIcon(titulo.getImage().getScaledInstance(lblTitulo.getWidth(), lblTitulo.getHeight(), Image.SCALE_SMOOTH)));
+        add(lblTitulo);
         
         //BOTON VOLVER
         btnVolver = new JButton("VOLVER");

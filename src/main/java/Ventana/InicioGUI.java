@@ -20,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
 public class InicioGUI extends PlantillaGUI{
     
@@ -43,6 +44,7 @@ public class InicioGUI extends PlantillaGUI{
         btnJugar.setBackground(Color.WHITE);
         btnJugar.setFont(new Font("Playbill",Font.BOLD,70));
         btnJugar.setFocusPainted(false);
+        btnJugar.setBorder(new LineBorder(Color.BLACK,2,true));
         btnJugar.setRolloverEnabled(false);
         btnJugar.addMouseListener(new ManejadoraDeMouse());
         this.add(btnJugar); 
