@@ -36,7 +36,6 @@ public class InicioGUI extends PlantillaGUI{
     
     @Override
     public void iniciarComponentes(){
-        
         //BOTON JUGAR
         btnJugar = new JButton("JUGAR");
         btnJugar.setBounds(340, 180, 160,65);
@@ -106,23 +105,14 @@ public class InicioGUI extends PlantillaGUI{
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
-        ImageIcon moneda2 = new ImageIcon("moneda2.png");
-        ImageIcon moneda2Iluminada = new ImageIcon("moneda2Retro.png");
-        ImageIcon paraQueSirve = new ImageIcon("ParaQueSirve.png");
-        ImageIcon paraQueSirveIluminado = new ImageIcon("ParaQueSirveRetro.png");
-        ImageIcon moneda = new ImageIcon("moneda.png");
-        ImageIcon monedaIluminada = new ImageIcon("monedaRetro.png");
-        ImageIcon comoJugar = new ImageIcon("ComoJugar.png");
-        ImageIcon comoJugarIluminado = new ImageIcon("ComoJugarRetro.png");
-
+        
+        @Override
         public void mouseEntered(MouseEvent e) {
             if(e.getSource() == btnMoneda2 | e.getSource() == btnParaQueSirve){
-                btnMoneda2.setIcon(new ImageIcon(moneda2Iluminada.getImage().getScaledInstance(btnMoneda2.getWidth(), btnMoneda2.getHeight(), Image.SCALE_SMOOTH)));
-                btnParaQueSirve.setIcon(new ImageIcon(paraQueSirveIluminado.getImage().getScaledInstance(btnParaQueSirve.getWidth(), btnParaQueSirve.getHeight(), Image.SCALE_SMOOTH)));            
+                paraQueSirveIluminado();
             }
             if(e.getSource() == btnMoneda1 | e.getSource() == btnComoJugar){
-                btnMoneda1.setIcon(new ImageIcon(monedaIluminada.getImage().getScaledInstance(btnMoneda1.getWidth(), btnMoneda1.getHeight(), Image.SCALE_SMOOTH)));
-                btnComoJugar.setIcon(new ImageIcon(comoJugarIluminado.getImage().getScaledInstance(btnComoJugar.getWidth(), btnComoJugar.getHeight(), Image.SCALE_SMOOTH)));               
+                comoJugarIluminado();
             }
             if(e.getSource() == btnJugar){
                 btnJugar.setForeground(Color.WHITE);
@@ -130,19 +120,136 @@ public class InicioGUI extends PlantillaGUI{
             }
         }
         
+        @Override
         public void mouseExited(MouseEvent e) {
             if(e.getSource() == btnMoneda2| e.getSource() == btnParaQueSirve){
-                btnMoneda2.setIcon(new ImageIcon(moneda2.getImage().getScaledInstance(btnMoneda2.getWidth(), btnMoneda2.getHeight(), Image.SCALE_SMOOTH)));
-                btnParaQueSirve.setIcon(new ImageIcon(paraQueSirve.getImage().getScaledInstance(btnParaQueSirve.getWidth(), btnParaQueSirve.getHeight(), Image.SCALE_SMOOTH)));            
+                paraQueSirvePlano();
             }
             if(e.getSource() == btnMoneda1 | e.getSource() == btnComoJugar){
-                btnMoneda1.setIcon(new ImageIcon(moneda.getImage().getScaledInstance(btnMoneda1.getWidth(), btnMoneda1.getHeight(), Image.SCALE_SMOOTH)));
-                btnComoJugar.setIcon(new ImageIcon(comoJugar.getImage().getScaledInstance(btnComoJugar.getWidth(), btnComoJugar.getHeight(), Image.SCALE_SMOOTH)));            
+                comoJugarPlano();
             }
             if(e.getSource() == btnJugar){
                 btnJugar.setForeground(Color.BLACK);
                 btnJugar.setBackground(Color.WHITE);   
             }      
         }
+        
+        @Override
+        public void mousePressed(MouseEvent e){
+            if(e.getSource() == btnJugar){
+                if (e.getButton() == 1){
+                    btnJugar.setBackground(Color.WHITE);
+                    btnJugar.setForeground(Color.BLACK);
+                } else{
+                    e.consume();
+                }
+            }
+            if(e.getSource() == btnMoneda2| e.getSource() == btnParaQueSirve){
+                if (e.getButton() == 1){
+                    paraQueSirvePlano();
+                } else{
+                    e.consume();
+                }
+            }
+            if(e.getSource() == btnMoneda1 | e.getSource() == btnComoJugar){
+                if (e.getButton() == 1){
+                    comoJugarPlano();
+                } else{
+                    e.consume();
+                } 
+            }
+        }
+        
+        @Override
+        public void mouseReleased(MouseEvent e){
+            if(e.getSource() == btnJugar){
+                if (e.getButton() == 1){
+                    btnJugar.setBackground(Color.BLACK);
+                    btnJugar.setForeground(Color.WHITE);
+                } else{
+                    e.consume();
+                }    
+            }
+            if(e.getSource() == btnMoneda2 | e.getSource() == btnParaQueSirve){
+                if (e.getButton() == 1){
+                    paraQueSirveIluminado();
+                } else{
+                    e.consume();
+                }
+            }
+            if(e.getSource() == btnMoneda1 | e.getSource() == btnComoJugar){
+                if (e.getButton() == 1){
+                    comoJugarIluminado();
+                } else{
+                    e.consume();
+                }
+            }
+        }
+        
+        @Override
+        public void mouseClicked(MouseEvent e){
+            if (e.getSource() == btnComoJugar | e.getSource() == btnMoneda1){
+                if (e.getButton() == 1){
+                    irComoJugarGUI();
+                } else{
+                    e.consume();
+                }
+            }
+            if (e.getSource() == btnParaQueSirve | e.getSource() == btnMoneda2){
+                if (e.getButton() == 1){
+                    irParaQueSirveGUI();
+                } else{
+                    e.consume();
+                }
+            }
+            if (e.getSource() == btnJugar){
+                if (e.getButton() == 1){
+                    irNombreGUI();
+                } else{
+                    e.consume();
+                }
+            }
+        }
+    }
+    
+    public void irComoJugarGUI(){
+        /*ComoJugarGUI ventanaComoJugar = new ComoJugarGUI("Cómo jugar");
+        ventanaComoJugar.setVisible(true);
+        this.dispose();*/
+    }
+    public void irParaQueSirveGUI(){
+        /*ParaQueSirveGUI ventanaParaQueSirve = new ParaQueSirveGUI("Para qué sirve");
+        ventanaParaQueSirve.setVisible(true);
+        this.dispose();*/
+    }
+    public void irNombreGUI(){
+        /*NombreGUI ventanaNombre = new NombreGUI("Configuración");
+        ventanaNombre.setVisible(true);
+        this.dispose();*/
+    }
+    public void paraQueSirveIluminado(){
+        ImageIcon moneda2Iluminada = new ImageIcon("moneda2Retro.png");
+        ImageIcon paraQueSirveIluminado = new ImageIcon("ParaQueSirveRetro.png");
+        btnMoneda2.setIcon(new ImageIcon(moneda2Iluminada.getImage().getScaledInstance(btnMoneda2.getWidth(), btnMoneda2.getHeight(), Image.SCALE_SMOOTH)));
+        btnParaQueSirve.setIcon(new ImageIcon(paraQueSirveIluminado.getImage().getScaledInstance(btnParaQueSirve.getWidth(), btnParaQueSirve.getHeight(), Image.SCALE_SMOOTH)));             
+    }
+    public void comoJugarIluminado(){
+        ImageIcon monedaIluminada = new ImageIcon("monedaRetro.png");
+        ImageIcon comoJugarIluminado = new ImageIcon("ComoJugarRetro.png");
+        btnMoneda1.setIcon(new ImageIcon(monedaIluminada.getImage().getScaledInstance(btnMoneda1.getWidth(), btnMoneda1.getHeight(), Image.SCALE_SMOOTH)));
+        btnComoJugar.setIcon(new ImageIcon(comoJugarIluminado.getImage().getScaledInstance(btnComoJugar.getWidth(), btnComoJugar.getHeight(), Image.SCALE_SMOOTH)));               
+    }
+    public void comoJugarPlano(){
+        ImageIcon moneda = new ImageIcon("moneda.png");
+        ImageIcon comoJugar = new ImageIcon("ComoJugar.png");
+        btnMoneda1.setIcon(new ImageIcon(moneda.getImage().getScaledInstance(btnMoneda1.getWidth(), btnMoneda1.getHeight(), Image.SCALE_SMOOTH)));
+        btnComoJugar.setIcon(new ImageIcon(comoJugar.getImage().getScaledInstance(btnComoJugar.getWidth(), btnComoJugar.getHeight(), Image.SCALE_SMOOTH)));            
+
+    }
+    public void paraQueSirvePlano(){
+        ImageIcon moneda2 = new ImageIcon("moneda2.png");
+        ImageIcon paraQueSirve = new ImageIcon("ParaQueSirve.png");
+        btnMoneda2.setIcon(new ImageIcon(moneda2.getImage().getScaledInstance(btnMoneda2.getWidth(), btnMoneda2.getHeight(), Image.SCALE_SMOOTH)));
+        btnParaQueSirve.setIcon(new ImageIcon(paraQueSirve.getImage().getScaledInstance(btnParaQueSirve.getWidth(), btnParaQueSirve.getHeight(), Image.SCALE_SMOOTH)));            
     }
 }

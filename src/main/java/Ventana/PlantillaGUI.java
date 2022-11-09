@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 public class PlantillaGUI extends JFrame{
     
@@ -34,6 +35,7 @@ public class PlantillaGUI extends JFrame{
     public PlantillaGUI(String titulo){
         
         iniciarComponentes();
+        UIManager.put( "Button.select", false );
         setSize(860,550);
         setVisible(true);
         setLocationRelativeTo(null);
@@ -44,7 +46,6 @@ public class PlantillaGUI extends JFrame{
     }
     
     public void iniciarComponentes(){
-        
         //LABEL TITULO
         ImageIcon titulo = new ImageIcon("titulo.png"); 
         lblTitulo = new JLabel();
