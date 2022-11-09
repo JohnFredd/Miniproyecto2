@@ -50,8 +50,8 @@ public class PlantillaGUI extends JFrame{
         lblTitulo = new JLabel("MEMORABBLE",SwingConstants.CENTER);
         //lblTitulo.setOpaque(true);
         //lblTitulo.setBackground(Color.BLACK);
-        lblTitulo.setBounds(230, 25, 380,65); //280, 25, 300,50 para tamaño 72
-        lblTitulo.setFont(new Font("Playbill",Font.BOLD,90));
+        lblTitulo.setBounds(205, 35, 435,85); //230, 25, 380,65 para tamaño 90
+        lblTitulo.setFont(new Font("Playbill",Font.BOLD,110));
         lblTitulo.setForeground(Color.WHITE);
         this.add(lblTitulo);
         
@@ -62,8 +62,8 @@ public class PlantillaGUI extends JFrame{
         btnVolver.setBackground(Color.WHITE);
         btnVolver.setFont(new Font("Playbill",Font.BOLD,50));
         btnVolver.setFocusPainted(false);
-        btnVolver.addMouseListener(new ManejadoraDeMouse());
         btnVolver.setRolloverEnabled(false);
+        btnVolver.addMouseListener(new ManejadoraDeMouse());
         this.add(btnVolver);
         
         //TEXTAREA
