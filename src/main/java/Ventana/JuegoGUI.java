@@ -78,15 +78,15 @@ public class JuegoGUI extends JFrame{
     public void iniciarComponentes(){
         
         //PRUEBA
-        fichaDePrueba = new JButton();
-        fichaDePrueba.setBounds(200, 200, 330, 336);
+        /*fichaDePrueba = new JButton();
+        fichaDePrueba.setBounds(200, 200, 300, 300);
         ImageIcon prueba = new ImageIcon("corazon.png");
         fichaDePrueba.setIcon(new ImageIcon(prueba.getImage().getScaledInstance(fichaDePrueba.getWidth(), fichaDePrueba.getHeight(), Image.SCALE_SMOOTH)));
         fichaDePrueba.setBackground(Color.red);
-        fichaDePrueba.setBorder(new LineBorder(Color.BLACK,4,true));
+        fichaDePrueba.setBorder(new LineBorder(Color.BLACK,4,false));
         fichaDePrueba.setFocusPainted(false);
         fichaDePrueba.setRolloverEnabled(false);
-        add(fichaDePrueba);
+        add(fichaDePrueba);*/
         
         contenedor = getContentPane();
         contenedor.setLayout(null);
