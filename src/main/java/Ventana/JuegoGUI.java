@@ -118,7 +118,7 @@ public class JuegoGUI extends JFrame{
         btnSoundOff.setFocusPainted(false);
         btnSoundOff.addMouseListener(new ManejadoraDeMouse());
         btnSoundOff.setRolloverEnabled(false);
-        btnSoundOn.setEnabled(true);
+        btnSoundOff.setEnabled(true);
         contenidoSuperior.add(btnSoundOff);
         
         //LABEL PUNTUACIÓN
