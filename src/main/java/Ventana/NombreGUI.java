@@ -49,7 +49,7 @@ public class NombreGUI extends PlantillaGUI{
         btnContinuar.setBackground(Color.WHITE);
         btnContinuar.setFont(new Font("Playbill",Font.BOLD,70));
         btnContinuar.setFocusPainted(false);
-        btnContinuar.setBorder(new LineBorder(Color.BLACK,2,true));
+        btnContinuar.setBorder(new LineBorder(Color.BLACK,2,false));
         btnContinuar.setRolloverEnabled(false);
         btnContinuar.addMouseListener(new ManejadoraDeMouse());
         add(btnContinuar); 

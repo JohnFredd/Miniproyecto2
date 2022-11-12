@@ -43,7 +43,7 @@ public class InicioGUI extends PlantillaGUI{
         btnJugar.setBackground(Color.WHITE);
         btnJugar.setFont(new Font("Playbill",Font.BOLD,70));
         btnJugar.setFocusPainted(false);
-        btnJugar.setBorder(new LineBorder(Color.BLACK,2,true));
+        btnJugar.setBorder(new LineBorder(Color.BLACK,2,false));
         btnJugar.setRolloverEnabled(false);
         btnJugar.addMouseListener(new ManejadoraDeMouse());
         this.add(btnJugar); 
