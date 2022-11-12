@@ -15,4 +15,7 @@ package Logica;
 
 public class Juego {
     
+    public Juego(){
+        
+    }
 }

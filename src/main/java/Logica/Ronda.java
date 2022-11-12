@@ -15,4 +15,7 @@ package Logica;
 
 public class Ronda {
     
+    public Ronda(){
+        
+    }
 }
