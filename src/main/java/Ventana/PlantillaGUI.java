@@ -45,6 +45,21 @@ public class PlantillaGUI extends JFrame{
         
     }
     
+    public PlantillaGUI(String titulo, boolean iniciarComponentes){
+        
+        if (iniciarComponentes) {
+            iniciarComponentes();
+        }
+        UIManager.put( "Button.select", false );
+        setSize(860,550);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle(titulo);
+        
+    }
+    
     public void iniciarComponentes(){
         //LABEL TITULO
         ImageIcon titulo = new ImageIcon("titulo.png");

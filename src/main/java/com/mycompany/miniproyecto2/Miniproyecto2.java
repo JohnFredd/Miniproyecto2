@@ -13,12 +13,11 @@
 
 package com.mycompany.miniproyecto2;
 
-import Ventana.*;
+import Ventana.InicioGUI;
 
 public class Miniproyecto2 {
 
     public static void main(String[] args) {
-        //InicioGUI inicio = new InicioGUI("Inicio");
-        GameOverGUI inicio = new GameOverGUI("Game Over", 10,100,5,"Hola mundo");
+        InicioGUI inicio = new InicioGUI("Inicio");
     }
 }

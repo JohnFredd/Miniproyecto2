@@ -46,15 +46,12 @@ public class GameOverGUI extends PlantillaGUI{
     private JLabel lblTiempoDato;
     
     public GameOverGUI(String titulo, int aciertos, int fallos, int puntaje, String tiempo) {
-        this(titulo);
+        super(titulo, false);
         this.aciertos = aciertos;
         this.fallos = fallos;
         this.puntaje = puntaje;
         this.tiempo = tiempo;
-    }
-    
-    public GameOverGUI(String titulo) {
-        super(titulo);
+        iniciarComponentes();
     }
     
     @Override
