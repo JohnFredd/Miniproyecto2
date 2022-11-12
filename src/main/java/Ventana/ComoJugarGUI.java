@@ -34,7 +34,7 @@ public class ComoJugarGUI extends PlantillaGUI {
     private JLabel lblImagen;
     private JButton btnFlechaDer;
     private JButton btnFlechaIzq;
-    int paginaAct = 0 ;
+    int paginaAct;
     
     public ComoJugarGUI(String titulo){
         super(titulo);
@@ -43,6 +43,7 @@ public class ComoJugarGUI extends PlantillaGUI {
    @Override
    public void iniciarComponentes(){
 
+       paginaAct = 1;
        //panel 1
        /*panel1 = new JPanel ();
        panel1.setEnabled(false);
@@ -94,10 +95,11 @@ public class ComoJugarGUI extends PlantillaGUI {
        
        //CONFIGURACION SOBRE PLANTILLA
 
-       paginaAct = 1 ;
-       //txtAInfo.append("\n    Un juego que te permite entrenar tu capacid  ad de\n");
+       //paginaAct = 1 ;
        cargarInfo();
-       paginaAct = 0 ;
+       //txtAInfo.append("\n    Un juego que te permite entrenar tu capacid  ad de\n");
+       System.out.print(paginaAct);
+       //paginaAct = 0 ;
        
        //TITULO
        ImageIcon titulo = new ImageIcon("ComoJugar.png");
@@ -147,12 +149,22 @@ public class ComoJugarGUI extends PlantillaGUI {
   
    }
    public void cargarInfo(){
-       switch (paginaAct){
-           case 1:cargarInfo1();break; 
-           case 2:cargarInfo2();break;
-           case 3:cargarInfo3();break; 
-           case 4:cargarInfo4();break;
-           case 5:cargarInfo5();break;
+       switch (paginaAct) {
+           case 1 ->{
+           cargarInfo1(); 
+           }
+           case 2 ->{
+           cargarInfo2(); 
+           }
+           case 3 ->{
+           cargarInfo3(); 
+           }
+           case 4 ->{
+           cargarInfo4(); 
+           }
+           case 5 ->{
+           cargarInfo5(); 
+           }
        }
    }
    
@@ -219,41 +231,40 @@ public class ComoJugarGUI extends PlantillaGUI {
        public void mouseClicked(MouseEvent e){
            if (e.getSource() == btnFlechaDer && e.getButton() == 1 ){
                if(paginaAct < 5){
-                   cargarInfo();
                    paginaAct += 1;
+                   cargarInfo();
                    btnFlechaIzq.setEnabled(true);
                    btnFlechaIzq.setVisible(true);
                    System.out.print(paginaAct);
                
-               }if(paginaAct == 5){
-                   
-                   btnFlechaDer.setEnabled(false);
-                   btnFlechaDer.setVisible(false);
-                    
-               }else{
-                   e.consume();
                }
+               if(paginaAct == 5){
+                   cargarInfo();
+                   btnFlechaDer.setEnabled(false);
+               }
+           } else {
+               e.consume();
            }
            if (e.getSource() == btnFlechaIzq && e.getButton() == 1 ){
                if(paginaAct > 1){
-                   cargarInfo();
                    paginaAct -= 1;
+                   cargarInfo();
                    btnFlechaDer.setEnabled(true);
                    btnFlechaDer.setVisible(true);
                    System.out.print(paginaAct);
-
-               }if(paginaAct == 1){
-                   
+               }
+               if(paginaAct == 1){
+                   cargarInfo();
                    btnFlechaIzq.setEnabled(false);
                    btnFlechaIzq.setVisible(false);
-               }else{
-                   e.consume();
+                   System.out.print(paginaAct);
                }
+            } else {
+               e.consume();
            }
        }
    }
-   
-   
+
    public void btnFlechaIzqPress(){
        ImageIcon flechaIzqPress = new ImageIcon("flechaIzqPress.png");
        btnFlechaIzq.setIcon(new ImageIcon(flechaIzqPress.getImage().getScaledInstance(btnFlechaIzq.getWidth(), btnFlechaIzq.getHeight(), Image.SCALE_SMOOTH)));
