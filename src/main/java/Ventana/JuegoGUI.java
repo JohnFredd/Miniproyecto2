@@ -59,6 +59,8 @@ public class JuegoGUI extends JFrame{
     private Juego juego;
     private String nombreJugador;
     
+    private JButton fichaDePrueba;
+    
     public JuegoGUI(/*Juego juego, Ronda ronda*/String nombreJugador){
         //this.juego = juego;
         //this.ronda = ronda;
@@ -74,6 +76,17 @@ public class JuegoGUI extends JFrame{
         juego = new Juego();
     }
     public void iniciarComponentes(){
+        
+        //PRUEBA
+        fichaDePrueba = new JButton();
+        fichaDePrueba.setBounds(200, 200, 330, 336);
+        ImageIcon prueba = new ImageIcon("corazon.png");
+        fichaDePrueba.setIcon(new ImageIcon(prueba.getImage().getScaledInstance(fichaDePrueba.getWidth(), fichaDePrueba.getHeight(), Image.SCALE_SMOOTH)));
+        fichaDePrueba.setBackground(Color.red);
+        fichaDePrueba.setBorder(new LineBorder(Color.BLACK,4,true));
+        fichaDePrueba.setFocusPainted(false);
+        fichaDePrueba.setRolloverEnabled(false);
+        add(fichaDePrueba);
         
         contenedor = getContentPane();
         contenedor.setLayout(null);
