@@ -443,8 +443,8 @@ public class JuegoGUI extends JFrame{
     }
     
     public void irGameOver(){
-        /*GameOverGUI ventanaGameOver = new GameOverGUI();
+        GameOverGUI ventanaGameOver = new GameOverGUI("Game Over", 2, 3, 10000, "1:20");
         ventanaGameOver.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }   
 }
