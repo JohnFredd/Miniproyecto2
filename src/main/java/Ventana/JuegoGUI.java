@@ -58,6 +58,7 @@ public class JuegoGUI extends JFrame{
     private Ronda ronda;
     private Juego juego;
     private String nombreJugador;
+    
     public JuegoGUI(/*Juego juego, Ronda ronda*/String nombreJugador){
         //this.juego = juego;
         //this.ronda = ronda;
@@ -70,6 +71,7 @@ public class JuegoGUI extends JFrame{
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Memorabble");
+        juego = new Juego();
     }
     public void iniciarComponentes(){
         
