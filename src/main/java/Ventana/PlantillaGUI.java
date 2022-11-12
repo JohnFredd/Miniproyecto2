@@ -1,4 +1,4 @@
-/*
+ /*
  * MINIPROYECTO #2
  *
  * INTEGRANTES: 

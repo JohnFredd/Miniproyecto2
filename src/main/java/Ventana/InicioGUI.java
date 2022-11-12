@@ -213,9 +213,9 @@ public class InicioGUI extends PlantillaGUI{
     }
     
     public void irComoJugarGUI(){
-        /*ComoJugarGUI ventanaComoJugar = new ComoJugarGUI("Cómo jugar");
+        ComoJugarGUI ventanaComoJugar = new ComoJugarGUI("Cómo jugar");
         ventanaComoJugar.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }
     public void irParaQueSirveGUI(){
         ParaQueSirveGUI ventanaParaQueSirve = new ParaQueSirveGUI("Para qué sirve");

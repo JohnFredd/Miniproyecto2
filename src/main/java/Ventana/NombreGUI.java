@@ -23,6 +23,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -81,7 +82,11 @@ public class NombreGUI extends PlantillaGUI{
         public void mouseClicked(MouseEvent e){
             if (e.getSource() == btnContinuar){
                 if (e.getButton() == 1){
-                    irJuegoGUI();
+                    if (txtNombre.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre para continuar", "Error", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        irJuegoGUI(); 
+                    }
                 } else{
                     e.consume();
                 }  
@@ -130,9 +135,9 @@ public class NombreGUI extends PlantillaGUI{
     }
     
     public void irJuegoGUI(){
-        /*JuegoGUI ventanaJuego = new JuegoGUI("Memorabble");
+        JuegoGUI ventanaJuego = new JuegoGUI(/*juego, ronda*/txtNombre.getText());
         ventanaJuego.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }
     
     private void verificarTexto(JTextField a){
