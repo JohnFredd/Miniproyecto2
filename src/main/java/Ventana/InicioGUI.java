@@ -85,7 +85,7 @@ public class InicioGUI extends PlantillaGUI{
         add(btnParaQueSirve);
         
         //MONEDA 2
-        ImageIcon moneda2 = new ImageIcon("moneda2.png");
+        ImageIcon moneda2 = new ImageIcon("moneda.png");
         btnMoneda2 = new JButton();  
         btnMoneda2.setBounds(600, 350, 150, 150);
         btnMoneda2.setIcon(new ImageIcon(moneda2.getImage().getScaledInstance(btnMoneda2.getWidth(), btnMoneda2.getHeight(), Image.SCALE_SMOOTH)));
@@ -228,7 +228,7 @@ public class InicioGUI extends PlantillaGUI{
         this.dispose();
     }
     public void paraQueSirveIluminado(){
-        ImageIcon moneda2Iluminada = new ImageIcon("moneda2Retro.png");
+        ImageIcon moneda2Iluminada = new ImageIcon("monedaRetro.png");
         ImageIcon paraQueSirveIluminado = new ImageIcon("ParaQueSirveRetro.png");
         btnMoneda2.setIcon(new ImageIcon(moneda2Iluminada.getImage().getScaledInstance(btnMoneda2.getWidth(), btnMoneda2.getHeight(), Image.SCALE_SMOOTH)));
         btnParaQueSirve.setIcon(new ImageIcon(paraQueSirveIluminado.getImage().getScaledInstance(btnParaQueSirve.getWidth(), btnParaQueSirve.getHeight(), Image.SCALE_SMOOTH)));             
@@ -247,7 +247,7 @@ public class InicioGUI extends PlantillaGUI{
 
     }
     public void paraQueSirvePlano(){
-        ImageIcon moneda2 = new ImageIcon("moneda2.png");
+        ImageIcon moneda2 = new ImageIcon("moneda.png");
         ImageIcon paraQueSirve = new ImageIcon("ParaQueSirve.png");
         btnMoneda2.setIcon(new ImageIcon(moneda2.getImage().getScaledInstance(btnMoneda2.getWidth(), btnMoneda2.getHeight(), Image.SCALE_SMOOTH)));
         btnParaQueSirve.setIcon(new ImageIcon(paraQueSirve.getImage().getScaledInstance(btnParaQueSirve.getWidth(), btnParaQueSirve.getHeight(), Image.SCALE_SMOOTH)));            
