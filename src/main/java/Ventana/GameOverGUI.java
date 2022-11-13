@@ -166,6 +166,7 @@ public class GameOverGUI extends PlantillaGUI{
         add(lblTiempoDato);
         
         
+        
         super.iniciarComponentes();
         
         //CONFIGURACION SOBRE PLANTILLA

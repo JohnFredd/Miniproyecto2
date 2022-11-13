@@ -104,10 +104,10 @@ public class ComoJugarGUI extends PlantillaGUI {
     public void cargarInfo1(){
         
        txtAInfo.setText(" ");
-       txtAInfo.append("\n   En MEMORABBLE, al iniciar el juego, aparecerán una serie de figuras de disitintos \n");
+       txtAInfo.append("\n   En MEMORABBLE, al iniciar el juego, aparecerán una serie de figuras de distintos \n");
        txtAInfo.append("   colores sobre una serie de fichas en pantalla.  Al cabo de unos segundos,\n");
        txtAInfo.append("   las figuras mostradas desaparecerán y el jugador tendra que responder al\n");
-       txtAInfo.append("   requerimiento, sobre las fichas y su color, que se solicite.\n");
+       txtAInfo.append("   requerimiento sobre las fichas y color que se solicite.\n");
        
        ImageIcon imagen = new ImageIcon("rombo.png");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
@@ -116,8 +116,8 @@ public class ComoJugarGUI extends PlantillaGUI {
     
     public void cargarInfo2(){
        txtAInfo.setText(" ");
-       txtAInfo.append("\n   El requerimiento se mostrará en la parte derecha de la pantalla cuando las figuras\n");
-       txtAInfo.append("   en las fichas, hayan desaparecido el jugador deberá de pulsar sobre la ficha que\n");
+       txtAInfo.append("\n   El requerimiento se mostrará en la parte derecha de la pantalla, cuando las figuras\n");
+       txtAInfo.append("   en las fichas hayan desaparecido, el jugador deberá de pulsar sobre la ficha que\n");
        txtAInfo.append("   recuerde que cumpla con el requerimiento indicado en pantalla.\n");
        
        ImageIcon imagen= new ImageIcon("estrella.png");
@@ -126,7 +126,7 @@ public class ComoJugarGUI extends PlantillaGUI {
     
     public void cargarInfo3(){
        txtAInfo.setText(" ");
-       txtAInfo.append("\n   ¡¡ OJO !! puede haber mas de una ficha que cumpla el requerimiento indicado.\n");
+       txtAInfo.append("\n   ¡¡ OJO !! Puede haber más de una ficha que cumpla el requerimiento indicado.\n");
        txtAInfo.append("\n   Deberá de pulsar sobre todas las fichas que lo cumplan.\n");
 
        ImageIcon imagen = new ImageIcon("cruz.png");
@@ -146,8 +146,8 @@ public class ComoJugarGUI extends PlantillaGUI {
     
     public void cargarInfo5(){
        txtAInfo.setText(" ");
-       txtAInfo.append("\n   Es importante que el jugador memorice tanto como las formas, los colores y las\n");
-       txtAInfo.append("   pocisiones de cada una de las fichas.\n");
+       txtAInfo.append("\n   Es importante que el jugador memorice tanto las formas, los colores y las\n");
+       txtAInfo.append("   posiciones de cada una de las fichas.\n");
        txtAInfo.append("\n                  ¡¡APROVECHA CADA SEGUNDO Y HAZ ALGO MEMORABBLE!!\n");
        
        ImageIcon imagen = new ImageIcon("corazon.png");
