@@ -14,8 +14,9 @@
 package Logica;
 
 import java.awt.Color;
+import javax.swing.JButton;
 
-public class Ficha {
+public class Ficha extends JButton {
     
     private Color color;
     private String forma;

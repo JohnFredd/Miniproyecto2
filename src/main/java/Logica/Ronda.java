@@ -50,10 +50,23 @@ public class Ronda {
                 }
             }
         }
+        
+        establecerFichasAdivinar(mapa);
+        
         return mapa;
     }
     
-    public boolean comprobarFicha(Ficha ficha) {
+    public void establecerFichasAdivinar(Ficha[][] mapa) {
+        for (int x = 0; x < 7; x++) {
+            for(int y = 0; y < 5; y++) {
+                if (comprobarFicha(mapa[x][y],true)) {
+                    fichasFaltantes += 1;
+                }
+            }
+        }
+    }
+    
+    public boolean comprobarFicha(Ficha ficha, boolean conteo) {
         boolean coincideColor = false;
         boolean coincideForma = true;
         
@@ -73,6 +86,9 @@ public class Ronda {
         }
         
         boolean coincide = coincideColor && coincideForma;
+        if ((!coincide)&&(!conteo)) {
+            fichasFaltantes -= 1;
+        }
         return coincide;
     }
 
