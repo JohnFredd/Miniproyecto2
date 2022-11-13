@@ -29,7 +29,7 @@ public class ParaQueSirveGUI extends PlantillaGUI{
         //CONFIGURACION SOBRE PLANTILLA
         ImageIcon titulo = new ImageIcon("ParaQueSirve.png");
         lblTitulo.setIcon(new ImageIcon(titulo.getImage().getScaledInstance(lblTitulo.getWidth(), lblTitulo.getHeight(), Image.SCALE_SMOOTH)));
-        txtAInfo.setBounds(215, 220, 420, 150);
+        txtAInfo.setBounds(150, 200, 550, 200);
         txtAInfo.append("\n    Un juego que te permite entrenar tu capacidad de\n");
         txtAInfo.append("    codificación y recuerdo de información visual y espacial.\n");
         txtAInfo.append("    Este tipo de habilidades es relevante en la práctica de\n");
