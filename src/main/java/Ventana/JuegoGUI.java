@@ -13,6 +13,7 @@
 
 package Ventana;
 
+import Logica.Ficha;
 import Logica.Juego;
 import Logica.Ronda;
 import java.awt.Color;
@@ -54,16 +55,14 @@ public class JuegoGUI extends JFrame{
     private JPanel contenidoDerecho;
     private JPanel contenidoPpal;
     private Container contenedor;
-    private JButton[] fichas;
+    private Ficha[][] fichas;
     private Ronda ronda;
     private Juego juego;
     private String nombreJugador;
     
     private JButton fichaDePrueba;
     
-    public JuegoGUI(/*Juego juego, Ronda ronda*/String nombreJugador){
-        //this.juego = juego;
-        //this.ronda = ronda;
+    public JuegoGUI(String nombreJugador){
         this.nombreJugador = nombreJugador;
         iniciarComponentes();
         UIManager.put( "Button.select", false );
@@ -74,19 +73,9 @@ public class JuegoGUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Memorabble");
         juego = new Juego();
+        juego();
     }
     public void iniciarComponentes(){
-        
-        //PRUEBA
-        fichaDePrueba = new JButton();
-        fichaDePrueba.setBounds(200, 200, 330, 336);
-        ImageIcon prueba = new ImageIcon("corazon.png");
-        fichaDePrueba.setIcon(new ImageIcon(prueba.getImage().getScaledInstance(fichaDePrueba.getWidth(), fichaDePrueba.getHeight(), Image.SCALE_SMOOTH)));
-        fichaDePrueba.setBackground(Color.red);
-        fichaDePrueba.setBorder(new LineBorder(Color.BLACK,4,true));
-        fichaDePrueba.setFocusPainted(false);
-        fichaDePrueba.setRolloverEnabled(false);
-        add(fichaDePrueba);
         
         contenedor = getContentPane();
         contenedor.setLayout(null);
@@ -211,7 +200,6 @@ public class JuegoGUI extends JFrame{
         txtContador.setBackground(Color.WHITE);
         txtContador.setBorder(new LineBorder(Color.BLACK,4,false));
         txtContador.setEditable(false);
-        txtContador.setText("11:11");
         txtContador.setHorizontalAlignment(JTextField.CENTER);
         contenidoDerecho.add(txtContador);
         
@@ -256,7 +244,7 @@ public class JuegoGUI extends JFrame{
         //Panel de contenido principal
         contenidoPpal = new JPanel();
         contenidoPpal.setBackground(Color.DARK_GRAY);
-        contenidoPpal.setLayout(new GridLayout(5,9));
+        contenidoPpal.setLayout(new GridLayout(5,7));
         contenidoPpal.setBounds(10,125,690, 530);
         contenedor.add(contenidoPpal);
         
@@ -461,5 +449,39 @@ public class JuegoGUI extends JFrame{
         GameOverGUI ventanaGameOver = new GameOverGUI("Game Over", 2, 3, 10000, "1:20");
         ventanaGameOver.setVisible(true);
         this.dispose();
-    }   
+    }
+    
+    public void juego() {
+        while (true) {
+            ronda = new Ronda(juego);
+            fichas = ronda.generarMapaFichas();
+            for (int x=0;x<7;x++) {
+                for (int y=0;y<5;y++) {
+                    fichas[x][y].setBounds(x, y, 530/5, 690/7);
+                    ImageIcon imagen = new ImageIcon(fichas[x][y].getForma() + ".png");
+                    fichas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
+                    fichas[x][y].setBackground(fichas[x][y].getColor());
+                    fichas[x][y].setBorder(new LineBorder(Color.BLACK,4,false));
+                    fichas[x][y].setFocusPainted(false);
+                    fichas[x][y].setRolloverEnabled(false);
+                    contenidoPpal.add(fichas[x][y]);
+                }
+            }
+            for (int t = 0;t < 5; t++) {
+                try{
+                    Thread.sleep(1000);
+                } catch(InterruptedException e) {
+                    
+                }
+            }
+            for (int x=0;x<7;x++) {
+                for (int y=0;y<5;y++) {
+                    ImageIcon imagen = new ImageIcon(".png");
+                    fichas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
+                    fichas[x][y].setBackground(Color.WHITE);
+                }
+            }
+            break;
+        }
+    }
 }
