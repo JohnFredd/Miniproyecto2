@@ -83,7 +83,7 @@ public class PlantillaGUI extends JFrame{
         txtAInfo = new JTextArea();
         txtAInfo.setEditable(false);
         txtAInfo.setBounds(150, 315, 550, 120);
-        txtAInfo.setFont(new Font("Calibri",Font.PLAIN,17));
+        txtAInfo.setFont(new Font("Calibri",Font.PLAIN,22));
         this.add(txtAInfo);
         
         //FONDO

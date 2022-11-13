@@ -42,18 +42,9 @@ public class ComoJugarGUI extends PlantillaGUI {
     
    @Override
    public void iniciarComponentes(){
-
-       paginaAct = 1;
-       //panel 1
-       /*panel1 = new JPanel ();
-       panel1.setEnabled(false);
-       panel1.setVisible(true);
-       panel1.setBounds(260,115,310,175);
-       /*panel1.setForeground(Color.BLACK);
-       panel1.setBackground(Color.WHITE);
-       panel1.setFont(new Font("chiller",Font.BOLD,22));
-       this.add(panel1); */
        
+       paginaAct = 1;
+
        //IMAGEN 1 
        ImageIcon imagen = new ImageIcon ("corazon.png");
        lblImagen = new JLabel();
@@ -95,11 +86,8 @@ public class ComoJugarGUI extends PlantillaGUI {
        
        //CONFIGURACION SOBRE PLANTILLA
 
-       //paginaAct = 1 ;
+       
        cargarInfo();
-       //txtAInfo.append("\n    Un juego que te permite entrenar tu capacid  ad de\n");
-       System.out.print(paginaAct);
-       //paginaAct = 0 ;
        
        //TITULO
        ImageIcon titulo = new ImageIcon("ComoJugar.png");
@@ -107,43 +95,61 @@ public class ComoJugarGUI extends PlantillaGUI {
        lblTitulo.setBounds(185, 0, 500, 120);
        
        //AREA DE TEXTO
-       txtAInfo.setBounds(40, 315, 770, 120);
+       txtAInfo.setBounds(40, 300, 770, 140);
 
        //BOTON VOLVER
        btnVolver.setBounds(345, 450, 140, 50);
    }
    
     public void cargarInfo1(){
+        
        txtAInfo.setText(" ");
-       txtAInfo.append("\n    Un juego que te permite entrenar tu capacidad de\n");
-       ImageIcon imagen = new ImageIcon("corazon.png");
-       lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
+       txtAInfo.append("\n   En MEMORABBLE, al iniciar el juego, aparecerán una serie de figuras de disitintos \n");
+       txtAInfo.append("   colores sobre una serie de fichas en pantalla.  Al cabo de unos segundos,\n");
+       txtAInfo.append("   las figuras mostradas desaparecerán y el jugador tendra que responder al\n");
+       txtAInfo.append("   requerimiento, sobre las fichas y su color, que se solicite.\n");
        
+       ImageIcon imagen = new ImageIcon("rombo.png");
+       lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
+
    }
-   public void cargarInfo2(){
+    
+    public void cargarInfo2(){
        txtAInfo.setText(" ");
-       txtAInfo.append("    codificación y recuerdo de información visual y espacial.\n");
-       ImageIcon imagen2= new ImageIcon("corazon.png");
-       lblImagen.setIcon(new ImageIcon(imagen2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
-  
+       txtAInfo.append("\n   El requerimiento se mostrará en la parte derecha de la pantalla cuando las figuras\n");
+       txtAInfo.append("   en las fichas, hayan desaparecido el jugador deberá de pulsar sobre la ficha que\n");
+       txtAInfo.append("   recuerde que cumpla con el requerimiento indicado en pantalla.\n");
+       
+       ImageIcon imagen= new ImageIcon("estrella.png");
+       lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
    }
-   public void cargarInfo3(){
+    
+    public void cargarInfo3(){
        txtAInfo.setText(" ");
-       txtAInfo.append("    Este tipo de habilidades es relevante en la práctica de\n");
-       ImageIcon imagen = new ImageIcon("corazon.png");
+       txtAInfo.append("\n   ¡¡ OJO !! puede haber mas de una ficha que cumpla el requerimiento indicado.\n");
+       txtAInfo.append("\n   Deberá de pulsar sobre todas las fichas que lo cumplan.\n");
+
+       ImageIcon imagen = new ImageIcon("cruz.png");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
   
    }
-   public void cargarInfo4(){
+    
+    public void cargarInfo4(){
        txtAInfo.setText(" ");
-       txtAInfo.append("    algunos deportes, el reconocimiento de caras o para\n");
-       ImageIcon imagen= new ImageIcon("corazon.png");
+       txtAInfo.append("\n   En el ejemplo propuesto arriba, se pide pulsar sobre las fichas que contengan \n");
+       txtAInfo.append("   figuras\n");
+       
+       ImageIcon imagen= new ImageIcon("rayo.png");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
   
    }
-   public void cargarInfo5(){
+    
+    public void cargarInfo5(){
        txtAInfo.setText(" ");
-       txtAInfo.append("    recordar dónde guardamos nuestras cosas.");
+       txtAInfo.append("\n   Es importante que el jugador memorice tanto como las formas, los colores y las\n");
+       txtAInfo.append("   pocisiones de cada una de las fichas.\n");
+       txtAInfo.append("\n                  ¡¡APROVECHA CADA SEGUNDO Y HAZ ALGO MEMORABBLE!!\n");
+       
        ImageIcon imagen = new ImageIcon("corazon.png");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
   
@@ -235,7 +241,6 @@ public class ComoJugarGUI extends PlantillaGUI {
                    cargarInfo();
                    btnFlechaIzq.setEnabled(true);
                    btnFlechaIzq.setVisible(true);
-                   System.out.print(paginaAct);
                
                }
                if(paginaAct == 5){
@@ -251,13 +256,11 @@ public class ComoJugarGUI extends PlantillaGUI {
                    cargarInfo();
                    btnFlechaDer.setEnabled(true);
                    btnFlechaDer.setVisible(true);
-                   System.out.print(paginaAct);
                }
                if(paginaAct == 1){
                    cargarInfo();
                    btnFlechaIzq.setEnabled(false);
                    btnFlechaIzq.setVisible(false);
-                   System.out.print(paginaAct);
                }
             } else {
                e.consume();
