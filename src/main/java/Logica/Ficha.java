@@ -107,5 +107,13 @@ public class Ficha extends JButton {
     public String getForma() {
         return forma;
     }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setForma(String forma) {
+        this.forma = forma;
+    }
     
 }
