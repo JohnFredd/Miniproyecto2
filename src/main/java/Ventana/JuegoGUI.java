@@ -513,7 +513,7 @@ public class JuegoGUI extends JFrame{
     
     public void juego() {
         long tiempo;
-        tiempo = 1000*(juego.getCantAciertos() + juego.getCantFallos() + 15)/3;
+        tiempo = 1000*(juego.getCantAciertos() + juego.getCantFallos() + 16)/3;
         
         permisoParaSeleccionar = false;
         fichaAdivinar.setIcon(null);
