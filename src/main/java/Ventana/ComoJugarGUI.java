@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 
 public class ComoJugarGUI extends PlantillaGUI {
@@ -49,9 +50,9 @@ public class ComoJugarGUI extends PlantillaGUI {
        ImageIcon imagen = new ImageIcon ("corazon.png");
        lblImagen = new JLabel();
        lblImagen.setBounds(260,115,310,175);
-       lblImagen.setEnabled(false);
        lblImagen.setVisible(true);
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
+       lblImagen.setBorder(new LineBorder(Color.BLACK,2,false));
        this.add(lblImagen);
        
        
@@ -109,7 +110,7 @@ public class ComoJugarGUI extends PlantillaGUI {
        txtAInfo.append("   las figuras mostradas desaparecerán y el jugador tendra que responder al\n");
        txtAInfo.append("   requerimiento sobre las fichas y color que se solicite.\n");
        
-       ImageIcon imagen = new ImageIcon("rombo.png");
+       ImageIcon imagen = new ImageIcon("comoJugar1.jpg");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
 
    }
@@ -120,7 +121,7 @@ public class ComoJugarGUI extends PlantillaGUI {
        txtAInfo.append("   en las fichas hayan desaparecido, el jugador deberá de pulsar sobre la ficha que\n");
        txtAInfo.append("   recuerde que cumpla con el requerimiento indicado en pantalla.\n");
        
-       ImageIcon imagen= new ImageIcon("estrella.png");
+       ImageIcon imagen= new ImageIcon("comoJugar2.jpg");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
    }
     
@@ -129,7 +130,7 @@ public class ComoJugarGUI extends PlantillaGUI {
        txtAInfo.append("\n   ¡¡ OJO !! Puede haber más de una ficha que cumpla el requerimiento indicado.\n");
        txtAInfo.append("\n   Deberá de pulsar sobre todas las fichas que lo cumplan.\n");
 
-       ImageIcon imagen = new ImageIcon("cruz.png");
+       ImageIcon imagen = new ImageIcon("comoJugar3.jpg");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
   
    }
@@ -137,9 +138,9 @@ public class ComoJugarGUI extends PlantillaGUI {
     public void cargarInfo4(){
        txtAInfo.setText(" ");
        txtAInfo.append("\n   En el ejemplo propuesto arriba, se pide pulsar sobre las fichas que contengan \n");
-       txtAInfo.append("   figuras\n");
+       txtAInfo.append("   figuras tipo cruz\n");
        
-       ImageIcon imagen= new ImageIcon("rayo.png");
+       ImageIcon imagen= new ImageIcon("comoJugar4.jpg");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
   
    }
@@ -150,7 +151,7 @@ public class ComoJugarGUI extends PlantillaGUI {
        txtAInfo.append("   posiciones de cada una de las fichas.\n");
        txtAInfo.append("\n                  ¡¡APROVECHA CADA SEGUNDO Y HAZ ALGO MEMORABBLE!!\n");
        
-       ImageIcon imagen = new ImageIcon("corazon.png");
+       ImageIcon imagen = new ImageIcon("comoJugar5.jpg");
        lblImagen.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
   
    }
