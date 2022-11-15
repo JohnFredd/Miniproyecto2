@@ -19,7 +19,6 @@ import Logica.Ronda;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -40,6 +39,7 @@ import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
+
 
 public class JuegoGUI extends JFrame{
     
