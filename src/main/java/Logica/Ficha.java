@@ -73,8 +73,8 @@ public class Ficha extends JButton {
         }
     }
     
-    public Ficha(Color color,String forma) {
-        if (color == colores[0]) {
+    public Ficha(Color color,String forma, boolean abstracta) {
+        if (color == colores[0] && !abstracta) {
             int colorEscogido;
             while(true) {
                 colorEscogido = (int)(Math.random()*colores.length);
@@ -86,7 +86,7 @@ public class Ficha extends JButton {
         } else {
             this.color = color;
         }
-        if (forma.equals(formas[0])) {
+        if ((forma.equals(formas[0]) && !abstracta)) {
             int formaEscogida;
             while(true) {
                 formaEscogida = (int)(Math.random()*colores.length);

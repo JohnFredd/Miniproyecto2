@@ -21,6 +21,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
@@ -32,7 +34,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 
 public class JuegoGUI extends JFrame{
@@ -45,7 +51,6 @@ public class JuegoGUI extends JFrame{
     private JLabel lblVida3;
     private JLabel lblSonido;
     private JLabel lblTiempo;
-    private JLabel lblFigAAdivinar;
     private JButton btnSoundOn;
     private JButton btnSoundOff;
     private JTextField txtContador;
@@ -59,8 +64,10 @@ public class JuegoGUI extends JFrame{
     private Ronda ronda;
     private Juego juego;
     private String nombreJugador;
-    
-    private JButton fichaDePrueba;
+    private JLabel fichaAdivinar;
+    private int[] fichaSeleccionada = {0,0};
+    private boolean permisoParaSeleccionar;
+    private JTextField entrada;
     
     public JuegoGUI(String nombreJugador){
         this.nombreJugador = nombreJugador;
@@ -136,7 +143,7 @@ public class JuegoGUI extends JFrame{
         contenidoSuperior.add(lblPuntuacion);
         
         //LABEL NÚMERO DE PUNTUACIÓN
-        lblPuntuacion = new JLabel("1.000.000",SwingConstants.CENTER);
+        lblPuntuacion = new JLabel("0",SwingConstants.CENTER);
         lblPuntuacion.setBounds(550, 10, 130, 35);
         lblPuntuacion.setFont(new Font("Calibri cuerpo",Font.PLAIN, 20));
         lblPuntuacion.setOpaque(true);
@@ -210,27 +217,11 @@ public class JuegoGUI extends JFrame{
         txtAtexto.setBorder(new LineBorder(Color.BLACK,4,false));
 
         txtAtexto.setEditable(false);
-        txtAtexto.setText("""
-                          
-                                  Observe
-                                      las
-                                   figuras
-                              detenidamente
-                          
-                          """);
         contenidoDerecho.add(txtAtexto);
-        
-        //IMAGEN FIGURA A ADIVINAR
-        ImageIcon figuraAdivinar = new ImageIcon("cruz.jpeg");
-        lblFigAAdivinar = new JLabel();
-        lblFigAAdivinar.setBounds(7, 326, 150, 150);
-        lblFigAAdivinar.setIcon(new ImageIcon(figuraAdivinar.getImage().getScaledInstance(lblFigAAdivinar.getWidth(), lblFigAAdivinar.getHeight(), Image.SCALE_SMOOTH)));
-        lblFigAAdivinar.setBorder(new LineBorder(Color.BLACK,4,false));
-        contenidoDerecho.add(lblFigAAdivinar);
         
         //BOTON VOLVER A JUGAR
         btnFinalizarJuego = new JButton();
-        btnFinalizarJuego.setText("FINALIZAR JUEGO");
+        btnFinalizarJuego.setText("FINALIZAR");
         btnFinalizarJuego.setBounds(7, 575, 150, 60);
         btnFinalizarJuego.setForeground(Color.BLACK);
         btnFinalizarJuego.setBackground(Color.WHITE);
@@ -243,7 +234,7 @@ public class JuegoGUI extends JFrame{
         
         //Panel de contenido principal
         contenidoPpal = new JPanel();
-        contenidoPpal.setBackground(Color.DARK_GRAY);
+        contenidoPpal.setBackground(Color.BLACK);
         contenidoPpal.setLayout(new GridLayout(5,7));
         contenidoPpal.setBounds(10,125,690, 530);
         contenedor.add(contenidoPpal);
@@ -254,6 +245,15 @@ public class JuegoGUI extends JFrame{
         lblFondo.setBounds(0, 0, 900, 700);
         lblFondo.setIcon(new ImageIcon(imagen1.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_SMOOTH)));
         contenedor.add(lblFondo);
+        
+        //Ficha ADIVINAR
+        fichaAdivinar = new JLabel();
+        fichaAdivinar.setBounds(7, 326, 150, 150);
+        fichaAdivinar.setBorder(new LineBorder(Color.BLACK,4,false));
+        fichaAdivinar.setBackground(Color.WHITE);
+        fichaAdivinar.setOpaque(true);
+        contenidoDerecho.add(fichaAdivinar);
+        
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
@@ -446,42 +446,186 @@ public class JuegoGUI extends JFrame{
     }
     
     public void irGameOver(){
-        GameOverGUI ventanaGameOver = new GameOverGUI("Game Over", 2, 3, 10000, "1:20");
+        long tiempoMS = juego.getTiempoJuego();
+        long minutos = tiempoMS/60000;
+        long segundos = (tiempoMS-(minutos*60000))/1000;
+        String tiempo = String.valueOf(minutos)  + ":" + String.valueOf(segundos);
+        GameOverGUI ventanaGameOver = new GameOverGUI("Game Over", juego.getCantAciertos(), juego.getCantFallos(), juego.getPuntajeTotal(), tiempo);
         ventanaGameOver.setVisible(true);
         this.dispose();
     }
     
-    public void juego() {
-        while (true) {
-            ronda = new Ronda(juego);
-            fichas = ronda.generarMapaFichas();
-            for (int x=0;x<7;x++) {
-                for (int y=0;y<5;y++) {
-                    fichas[x][y].setBounds(x, y, 530/5, 690/7);
-                    ImageIcon imagen = new ImageIcon(fichas[x][y].getForma() + ".png");
-                    fichas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
-                    fichas[x][y].setBackground(fichas[x][y].getColor());
-                    fichas[x][y].setBorder(new LineBorder(Color.BLACK,4,false));
-                    fichas[x][y].setFocusPainted(false);
-                    fichas[x][y].setRolloverEnabled(false);
-                    contenidoPpal.add(fichas[x][y]);
+    class ManejadoraDeFichas extends MouseAdapter {
+        
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            boolean acerto;
+            if(e.getComponent().isEnabled()) {
+                for (int x=0;x<7;x++) {
+                    for (int y=0;y<5;y++) {
+                        if (e.getSource()==fichas[x][y]) {
+                            ImageIcon imagen = new ImageIcon(fichas[x][y].getForma() + ".png");
+                            fichas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
+                            fichas[x][y].setDisabledIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
+                            fichas[x][y].setBackground(fichas[x][y].getColor());
+                            fichas[x][y].setEnabled(false);
+                            fichas[x][y].setBorder(new CompoundBorder(new LineBorder(Color.BLACK,2,false),new BevelBorder(BevelBorder.LOWERED)));
+                            acerto = ronda.comprobarFicha(fichas[x][y],false);
+                            if (acerto && ronda.getFichasFaltantes()==0) {
+                                juego.actualizarDatos(true);
+                                lblPuntuacion.setText(String.valueOf(juego.getPuntajeTotal()));
+                                juego();
+                            }
+                            if (!acerto) {
+                                juego.actualizarDatos(false);
+                                actualizarVidas();
+                                if (juego.getCantFallos()==3) {
+                                    irGameOver();
+                                }
+                                juego();
+                            }
+                        }
+                    }
                 }
             }
-            for (int t = 0;t < 5; t++) {
-                try{
-                    Thread.sleep(1000);
-                } catch(InterruptedException e) {
-                    
-                }
-            }
-            for (int x=0;x<7;x++) {
-                for (int y=0;y<5;y++) {
-                    ImageIcon imagen = new ImageIcon(".png");
-                    fichas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
-                    fichas[x][y].setBackground(Color.WHITE);
-                }
-            }
-            break;
         }
+        
+    }
+    
+    public void juego() {
+        permisoParaSeleccionar = false;
+        contenidoPpal.removeAll();
+        contenedor.addKeyListener(new ManejadoraDeTeclado());
+        fichaAdivinar.setIcon(null);
+        fichaAdivinar.setBackground(Color.WHITE);
+        ronda = new Ronda(juego);
+        fichas = ronda.generarMapaFichas();
+        txtAtexto.setText("""
+                          
+                            Observe las
+                            figuras
+                            detenidamente.
+                          """);
+        
+        for (int x=0;x<7;x++) {
+            for (int y=0;y<5;y++) {
+                fichas[x][y].setBounds(x, y, 530/5, 690/7);
+                ImageIcon imagen = new ImageIcon(fichas[x][y].getForma() + ".png");
+                fichas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
+                fichas[x][y].setDisabledIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
+                fichas[x][y].setBackground(fichas[x][y].getColor());
+                fichas[x][y].setBorder(new CompoundBorder(new LineBorder(Color.BLACK,2,false),new CompoundBorder(new BevelBorder(BevelBorder.LOWERED),new BevelBorder(BevelBorder.LOWERED))));
+                fichas[x][y].setFocusPainted(false);
+                fichas[x][y].setRolloverEnabled(false);
+                fichas[x][y].setEnabled(false);
+                fichas[x][y].addMouseListener(new ManejadoraDeFichas());
+                //fichas[x][y].addKeyListener(new ManejadoraDeTeclado());
+                contenidoPpal.add(fichas[x][y]);
+            }
+        }
+        
+        Timer timerTexto = new Timer();
+        TimerTask taskTexto = new TimerTask() {
+            private int t = 5;
+
+            @Override
+            public void run() {
+                txtContador.setText(String.valueOf(t));
+                if (t == 0) {
+                    cancel();
+                }
+                t -= 1;
+            }
+        };
+        timerTexto.schedule(taskTexto, 0,1000);
+        
+        Timer timerFichas = new Timer();
+        TimerTask taskFichas = new TimerTask() {
+
+            @Override
+            public void run() {
+                permisoParaSeleccionar = true;
+                String texto;
+                if(ronda.getFichasFaltantes() == 1) {
+                    texto = "\n  Encuentre la\n  ficha que\n  cumpla: ";
+                } else {
+                    texto = "\n  Encuentre las\n  " + ronda.getFichasFaltantes() +" fichas que\n  cumplan: ";
+                }
+                txtAtexto.setText(texto);
+                for (int x=0;x<7;x++) {
+                    for (int y=0;y<5;y++) {
+                        fichas[x][y].setIcon(null);
+                        fichas[x][y].setBackground(Color.WHITE);
+                        fichas[x][y].setEnabled(true);
+                        fichas[x][y].setBorder(new CompoundBorder(new LineBorder(Color.BLACK,2,false),new BevelBorder(BevelBorder.RAISED)));
+                    }
+                }
+                ImageIcon icono = new ImageIcon(ronda.getFichaAdivinar().getForma() + ".png");
+                fichaAdivinar.setIcon(new ImageIcon(icono.getImage().getScaledInstance(fichaAdivinar.getWidth(), fichaAdivinar.getHeight(), Image.SCALE_SMOOTH)));
+                fichaAdivinar.setBackground(ronda.getFichaAdivinar().getColor());
+            }
+        };
+        timerFichas.schedule(taskFichas, 6000);
+    }
+    
+    public void actualizarVidas() {
+        if (juego.getCantFallos()==1) {
+            ImageIcon moneda = new ImageIcon("monedaGris.png");
+            lblVida1.setIcon(new ImageIcon(moneda.getImage().getScaledInstance(lblVida1.getWidth(), lblVida1.getHeight(), Image.SCALE_SMOOTH)));
+        }
+        if (juego.getCantFallos()==2) {
+            ImageIcon moneda = new ImageIcon("monedaGris.png");
+            lblVida2.setIcon(new ImageIcon(moneda.getImage().getScaledInstance(lblVida2.getWidth(), lblVida2.getHeight(), Image.SCALE_SMOOTH)));
+        }
+        if (juego.getCantFallos()==3) {
+            ImageIcon moneda = new ImageIcon("monedaGris.png");
+            lblVida3.setIcon(new ImageIcon(moneda.getImage().getScaledInstance(lblVida3.getWidth(), lblVida3.getHeight(), Image.SCALE_SMOOTH)));
+        }
+    }
+    
+    class ManejadoraDeTeclado extends KeyAdapter {
+        
+        @Override
+        public void keyReleased(KeyEvent e) {
+            System.out.println("Key listener activado, permiso: " + String.valueOf(permisoParaSeleccionar));
+            if(permisoParaSeleccionar) {
+                switch (e.getKeyChar()) {
+                    case KeyEvent.VK_UP -> {
+                        if(fichaSeleccionada[1] != 0) {
+                            fichaSeleccionada[1] -= 1;
+                            cambiarBordeFichaSeleccionada(fichaSeleccionada[0],fichaSeleccionada[1]+1);
+                        }
+                    }
+                    case KeyEvent.VK_DOWN -> {
+                        if(fichaSeleccionada[1] != 5) {
+                            fichaSeleccionada[1] += 1;
+                            cambiarBordeFichaSeleccionada(fichaSeleccionada[0],fichaSeleccionada[1]-1);
+                        }
+                    }
+                    case KeyEvent.VK_RIGHT -> {
+                        if(fichaSeleccionada[0] != 7) {
+                            fichaSeleccionada[0] += 1;
+                            cambiarBordeFichaSeleccionada(fichaSeleccionada[0]-1,fichaSeleccionada[1]);
+                        }
+                    }
+                    case KeyEvent.VK_LEFT -> {
+                        if(fichaSeleccionada[0] != 0) {
+                            fichaSeleccionada[0] -= 1;
+                            cambiarBordeFichaSeleccionada(fichaSeleccionada[0]+1,fichaSeleccionada[1]);
+                        }
+                    }
+                    case KeyEvent.VK_ENTER -> {
+
+                    }
+                    case KeyEvent.VK_SPACE -> {
+
+                    }
+                }
+            }
+        }
+    }
+    public void cambiarBordeFichaSeleccionada(int x, int y){
+        fichas[x][y].setBorder(new CompoundBorder(new LineBorder(Color.BLACK,2,false),new BevelBorder(BevelBorder.RAISED)));
+        fichas[fichaSeleccionada[0]][fichaSeleccionada[1]].setBorder(new CompoundBorder(new LineBorder(Color.BLACK,2,false),new CompoundBorder(new BevelBorder(BevelBorder.RAISED),new BevelBorder(BevelBorder.RAISED))));
     }
 }

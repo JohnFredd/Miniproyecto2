@@ -32,7 +32,10 @@ public class Ronda {
         Ficha mapa[][] = new Ficha[7][5];
         int numeroDeRonda = juego.getCantAciertos() + juego.getCantFallos() + 1;
         int numeroDeFichas = (numeroDeRonda/3) + 1;
-        mapa[(int)(Math.random()*7)][(int)(Math.random()*5)] = new Ficha(fichaAdivinar.getColor(), fichaAdivinar.getForma());
+        mapa[(int)(Math.random()*7)][(int)(Math.random()*5)] = new Ficha(fichaAdivinar.getColor(), fichaAdivinar.getForma(), false);
+        if (numeroDeFichas>34) {
+            numeroDeFichas = 34;
+        }
         for (int i = 0; i < numeroDeFichas; i++) {
             while(true) {
                 int x = (int)(Math.random()*7);
@@ -51,12 +54,12 @@ public class Ronda {
             }
         }
         
-        establecerFichasAdivinar(mapa);
+        establecerFichasFaltantes(mapa);
         
         return mapa;
     }
     
-    public void establecerFichasAdivinar(Ficha[][] mapa) {
+    public void establecerFichasFaltantes(Ficha[][] mapa) {
         for (int x = 0; x < 7; x++) {
             for(int y = 0; y < 5; y++) {
                 if (comprobarFicha(mapa[x][y],true)) {
@@ -66,9 +69,9 @@ public class Ronda {
         }
     }
     
-    public boolean comprobarFicha(Ficha ficha, boolean conteo) {
+    public boolean comprobarFicha(Ficha ficha, boolean esConteo) {
         boolean coincideColor = false;
-        boolean coincideForma = true;
+        boolean coincideForma = false;
         
         if (fichaAdivinar.getColor() == new Ficha("vacia").getColor()) {
             coincideColor = true;
@@ -86,7 +89,7 @@ public class Ronda {
         }
         
         boolean coincide = coincideColor && coincideForma;
-        if ((!coincide)&&(!conteo)) {
+        if (coincide&&(!esConteo)) {
             fichasFaltantes -= 1;
         }
         return coincide;
@@ -94,6 +97,10 @@ public class Ronda {
 
     public int getFichasFaltantes() {
         return fichasFaltantes;
+    }
+    
+    public Ficha getFichaAdivinar() {
+        return fichaAdivinar;
     }
     
 }

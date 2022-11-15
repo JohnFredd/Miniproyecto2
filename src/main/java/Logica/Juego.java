@@ -20,6 +20,7 @@ public class Juego {
     private int cantAciertos;
     private int cantFallos;
     private long tiempoJuego;
+    private int puntajeTotal;
     
     public Juego(){
         tiempoJuego = Calendar.getInstance().getTimeInMillis();
@@ -28,6 +29,7 @@ public class Juego {
     public void actualizarDatos(boolean acerto) {
         if (acerto) {
             cantAciertos += 1;
+            puntajeTotal += 100;
         } else {
             cantFallos += 1;
         }
@@ -45,6 +47,10 @@ public class Juego {
 
     public int getCantFallos() {
         return cantFallos;
+    }
+    
+    public int getPuntajeTotal() {
+        return puntajeTotal;
     }
     
 }
