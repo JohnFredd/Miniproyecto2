@@ -512,6 +512,9 @@ public class JuegoGUI extends JFrame{
     }
     
     public void juego() {
+        long tiempo;
+        tiempo = 1000*(juego.getCantAciertos() + juego.getCantFallos() + 15)/3;
+        
         permisoParaSeleccionar = false;
         fichaAdivinar.setIcon(null);
         fichaAdivinar.setBackground(Color.WHITE);
@@ -540,15 +543,15 @@ public class JuegoGUI extends JFrame{
         
         Timer timerTexto = new Timer();
         TimerTask taskTexto = new TimerTask() {
-            private int t = 5;
+            private long t = tiempo;
 
             @Override
             public void run() {
-                txtContador.setText(String.valueOf(t));
-                if (t == 0) {
+                txtContador.setText(String.valueOf((int)t/1000));
+                if (t <= 0) {
                     cancel();
                 }
-                t -= 1;
+                t -= 1000;
             }
         };
         timerTexto.schedule(taskTexto, 0,1000);
@@ -581,7 +584,7 @@ public class JuegoGUI extends JFrame{
                 fichaAdivinar.setBackground(ronda.getFichaAdivinar().getColor());
             }
         };
-        timerFichas.schedule(taskFichas, 6000);
+        timerFichas.schedule(taskFichas, tiempo+1000);
     }
     
     public void actualizarVidas() {
