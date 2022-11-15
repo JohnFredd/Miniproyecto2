@@ -516,7 +516,7 @@ public class JuegoGUI extends JFrame{
         fichaAdivinar.setIcon(null);
         fichaAdivinar.setBackground(Color.WHITE);
         ronda = new Ronda(juego);
-        fichas = ronda.generarMapaFichas();
+        Ficha[][] mapa = ronda.generarMapaFichas();
         txtAtexto.setText("""
                           
                             Observe las
@@ -526,6 +526,8 @@ public class JuegoGUI extends JFrame{
         
         for (int x=0;x<7;x++) {
             for (int y=0;y<5;y++) {
+                fichas[x][y].setForma(mapa[x][y].getForma());
+                fichas[x][y].setColor(mapa[x][y].getColor());
                 ImageIcon imagen = new ImageIcon(fichas[x][y].getForma() + ".png");
                 //System.out.println("ficha en " + x*100 + "," + y*100 + " forma " + fichas[x][y].getForma());
                 fichas[x][y].setIcon(new ImageIcon(imagen.getImage().getScaledInstance(fichas[x][y].getWidth(), fichas[x][y].getHeight(), Image.SCALE_DEFAULT)));
